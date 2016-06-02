@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="url" >
+  <button id="button">送信</button>
+  <div id="blogcard">
+  </div>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    'use scrict';
+    $('#button').click(() => {
+      $.getJSON('/generator.php',
+        {
+          url: $('#url').val()
+        }      
+      )
+      .done((data) => {
+        if(data) {
+          const result = data.html
+          console.log(result)
+          $('#blogcard').html(result);
+        }
+        else {
+          console.log('失敗')
+        }
+      })     
+    })
+  </script>
+
+</body>
+</html>
+
